@@ -70,14 +70,14 @@ class TimeEntryList extends StatelessWidget {
                                   .elementAt(index)
                                   .elementAt(index2)
                                   .pid)
-                              .then((value) {
-                            if (value.data.cid != null) {
+                              .then((project) {
+                            if (project.data.cid != null) {
                               context.read<HomeCubit>()
-                                  .getClientName(value.data.cid)
-                                  .then((value) {
+                                  .getClientName(project.data.cid)
+                                  .then((client) {
                                 return showAlertDialog(context, index, index2,
-                                    projectName: value.data.name,
-                                    clientName: value.data.name);
+                                    projectName: project.data.name,
+                                    clientName: client.data.name);
                               });
                             } else {
                               return showAlertDialog(context, index, index2);
@@ -230,14 +230,14 @@ class TimeEntryList extends StatelessWidget {
                     height: 8,
                   ),
                   Text(
-                    projectName == null ? "" : "project Name $projectName",
+                    projectName == null ? "" : "project Name: $projectName",
                     style: textStyle,
                   ),
                   const SizedBox(
                     height: 8,
                   ),
                   Text(
-                    clientName == null ? "" : "client  Name $clientName",
+                    clientName == null ? "" : "client Name: $clientName",
                     style: textStyle,
                   ),
                 ],
